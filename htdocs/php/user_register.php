@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-sm-12 text-center">
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-pills">
       <li class="nav-item">
-        <a class="nav-link text-secondary" href="index.php?view=connect">CONNEXION</a>
+        <a class="nav-link nav nav-pills" href="index.php?view=connect">CONNEXION</a>
       </li>
       <li class="nav-item">
         <a class="nav-link active">INSCRIPTION</a>
@@ -12,7 +12,7 @@
 </div>
 
 <div class="container">
-  <form action="php/send_register.php" method="post">
+  <form action="php/queries/send_register.php" method="post">
     <div class="row text-center">
       <div class="col-sm-12 mt-4">
         <input type="text" name="nickname" id="nickname" value="<?= $nickname ?>" placeholder="Pseudo" required>
@@ -24,7 +24,7 @@
         <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirmer le mot de passe" required>
       </div>
       <div class="col-sm-12 mt-4">
-        <button type="submit">S'ENREGISTRER</button>
+        <button class="btn btn-outline-primary" type="submit">S'ENREGISTRER</button>
       </div>
     </div>
   </form>

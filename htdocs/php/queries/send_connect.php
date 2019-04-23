@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include 'connexion.php';
+include '../connexion.php';
 
 setcookie('nickname', $_POST['nickname'], time() + (86400 * 30), "/");
 setcookie('userId', $_POST['userId'], time() + (86400 * 30), "/");

@@ -21,10 +21,33 @@ $question = $req->fetch();
 
 // Melanger les réponses
 
-$reponses = array(htmlspecialchars($question['answer1']), htmlspecialchars($question['answer2']), htmlspecialchars($question['answer3']), htmlspecialchars($question['answer4']));
-shuffle($reponses);
+$reponses = array('answer1'=> htmlspecialchars($question['answer1']), 'answer2'=> htmlspecialchars($question['answer2']), 'answer3'=> htmlspecialchars($question['answer3']), 'answer4'=> htmlspecialchars($question['answer4']));
 
-// theme, # question, question, reponses
+
+
+function shuffle_assoc($reponses) { 
+    if (!is_array($reponses)) return $reponses; 
+    $goodAnswer = 0;
+    $keys = array_keys($reponses); 
+    shuffle($keys); 
+    $random = array(); 
+    $i = 0;
+    foreach ($keys as $key) { 
+      $random[$key] = $reponses[$key];
+      if ($key == 'answer1') {
+        $goodAnswer = $i;
+      }
+      $i++;
+    }
+    $random['good'] = $goodAnswer;
+    return $random; 
+  } 
+
+$reponses = shuffle_assoc($reponses);
+
+$reponses = array_values($reponses);
+
+// theme, numero question, question, reponses
 ?>
 
     <?=$response['name']?>,
@@ -34,4 +57,5 @@ shuffle($reponses);
     <?=$reponses[1]?>,
     <?=$reponses[2]?>,
     <?=$reponses[3]?>,
+    <?=$reponses[4]?>
 

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include 'connexion.php';
+include '../connexion.php';
 
 
 $req = $bdd->prepare('INSERT INTO users (nickname, password) VALUES (?, ?)');

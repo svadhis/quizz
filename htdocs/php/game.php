@@ -24,16 +24,22 @@ fetch(`/php/queries/get_question.php`)
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <button class="btn btn-primary" type="button">${question[3]}</button>
+                <button class="btn btn-primary" type="button" onclick="checkAnswer(0, ${question[7]});">${question[3]}</button>
             </div>
             <div class="col-sm-12">
-                <button class="btn btn-primary" type="button">${question[4]}</button>
+                <button class="btn btn-primary" type="button" onclick="checkAnswer(1, ${question[7]});">${question[4]}</button>
             </div>
             <div class="col-sm-12">
-                <button class="btn btn-primary" type="button">${question[5]}</button>
+                <button class="btn btn-primary" type="button" onclick="checkAnswer(2, ${question[7]});">${question[5]}</button>
             </div>
             <div class="col-sm-12">
-                <button class="btn btn-primary" type="button">${question[6]}</button>
+                <button class="btn btn-primary" type="button" onclick="checkAnswer(3, ${question[7]});">${question[6]}</button>
+            </div>
+            <div class="col-sm-12">
+                <form action="/php/queries/leave_game.php" method="post">
+                    <button class="btn btn-primary" type="submit">Quitter le quizz</button>
+                </form>
+                La bonne réponse était ${question[7]}
             </div>
         </div>
         `;

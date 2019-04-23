@@ -1,18 +1,18 @@
 <div class="row">
     <div class="col-sm-12 text-center">
-        <ul class="nav nav-tabs">
+        <ul class="nav nav-pills">
             <li class="nav-item">
                 <a class="nav-link active">CONNEXION</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-secondary" href="index.php?view=register">INSCRIPTION</a>
+                <a class="nav-link nav nav-pills" href="index.php?view=register">INSCRIPTION</a>
             </li>
         </ul>
     </div>
 </div>
 
 <div class="container">
-    <form action="php/send_connect.php" method="post">
+    <form action="php/queries/send_connect.php" method="post">
         <div class="row text-center">
             <div class="col-sm-12 mt-4">
                 <input type="text" name="nickname" id="nickname" value="<?= $nickname ?>" placeholder="Pseudo" required>
@@ -22,7 +22,7 @@
             </div>
             <div class="col-sm-12 mt-4">
               <input type="hidden" name="userId" id="userId" value="" >
-                <button type="submit">SE CONNECTER</button>
+                <button class="btn btn-outline-primary" type="submit">SE CONNECTER</button>
             </div>
         </div>
     </form>
@@ -59,7 +59,6 @@
           nickname.setCustomValidity('');
           password.setCustomValidity('');
         }
-        console.log(result);
       });   
   }
 
