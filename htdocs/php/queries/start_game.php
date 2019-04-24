@@ -36,5 +36,16 @@ $questions = array_slice($response, 0, 6);
     $req = $bdd->prepare('INSERT INTO games (themeId, userId, questions) VALUES (?,?,?)');
     $req->execute(array($_POST['theme'], $_COOKIE['userId'], serialize($questions)));
 
+    $req = $bdd->prepare('SELECT id FROM games WHERE userId = ? AND progression = 0');
+    $req->execute(array($_COOKIE['userId']));
+    
+    $response = $req->fetch();
+
     $_SESSION['ingame'] = 1;
+    $_SESSION['question'] = 0;
+    $_SESSION['gameid'] = $response['id'];
+    $_SESSION['answers'] = array();
+    $_SESSION['score'] = 0;
+
+
     header('Location: /index.php');

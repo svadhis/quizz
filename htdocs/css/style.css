@@ -1,3 +1,54 @@
 .nav-item {
 	width: 50vw;
 }
+
+.logo {
+	font-family: 'Pacifico', cursive;
+	margin: auto;
+}
+
+.fixed {
+	position: absolute;
+	right: 15px;
+	margin-top: -15px;
+	font-size: 1.8em;
+}
+
+.timer-container {
+	position: absolute;
+	right: 15px;
+	margin-top: 5px;
+}
+
+.timer {
+}
+
+#myProgress {
+	margin: 0;
+}
+
+#myBar {
+	width: 1%;
+	height: 30px;
+}
+
+.btn btn-outline-dark {
+	margin: 10px 0;
+}
+
+.answer {
+	height: 41vw;
+	width: 41vw;
+	max-height: 125px;
+	max-width: 172px;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+body {
+	background-color: #4e9eb9;
+}
+
+.connexion {
+	margin-bottom: 125px;
+}

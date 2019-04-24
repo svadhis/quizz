@@ -11,7 +11,7 @@ $req->execute(array($_COOKIE['userId']));
 
 $response = $req->fetch();
 
-$questionNumber = $response['progression'];
+$questionNumber = $_SESSION['question'];
 $questions = unserialize($response['questions']);
 
 $req = $bdd->prepare('SELECT * FROM questions WHERE id = ?');
@@ -50,12 +50,12 @@ $reponses = array_values($reponses);
 // theme, numero question, question, reponses
 ?>
 
-    <?=$response['name']?>,
-    <?=$response['progression']?>,
-    <?=htmlspecialchars($question['question'])?>,
-    <?=$reponses[0]?>,
-    <?=$reponses[1]?>,
-    <?=$reponses[2]?>,
-    <?=$reponses[3]?>,
+    <?=$response['name']?>|
+    <?=$response['progression']?>|
+    <?=htmlspecialchars($question['question'])?>|
+    <?=$reponses[0]?>|
+    <?=$reponses[1]?>|
+    <?=$reponses[2]?>|
+    <?=$reponses[3]?>|
     <?=$reponses[4]?>
 

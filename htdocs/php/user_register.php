@@ -1,11 +1,11 @@
-<div class="row">
+<div class="row connexion">
   <div class="col-sm-12 text-center">
     <ul class="nav nav-pills">
       <li class="nav-item">
-        <a class="nav-link nav nav-pills" href="index.php?view=connect">CONNEXION</a>
+        <a class="btn btn-outline-dark" href="index.php?view=connect">CONNEXION</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active">INSCRIPTION</a>
+        <a class="btn btn-outline-dark">INSCRIPTION</a>
       </li>
     </ul>
   </div>
@@ -24,7 +24,7 @@
         <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirmer le mot de passe" required>
       </div>
       <div class="col-sm-12 mt-4">
-        <button class="btn btn-outline-primary" type="submit">S'ENREGISTRER</button>
+        <button class="btn btn-dark" type="submit">S'ENREGISTRER</button>
       </div>
     </div>
   </form>

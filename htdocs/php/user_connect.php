@@ -1,11 +1,11 @@
-<div class="row">
+<div class="row connexion">
     <div class="col-sm-12 text-center">
         <ul class="nav nav-pills">
             <li class="nav-item">
-                <a class="nav-link active">CONNEXION</a>
+                <a class="btn btn-outline-dark">CONNEXION</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link nav nav-pills" href="index.php?view=register">INSCRIPTION</a>
+                <a class="btn btn-outline-dark" href="index.php?view=register">INSCRIPTION</a>
             </li>
         </ul>
     </div>
@@ -15,14 +15,14 @@
     <form action="php/queries/send_connect.php" method="post">
         <div class="row text-center">
             <div class="col-sm-12 mt-4">
-                <input type="text" name="nickname" id="nickname" value="<?= $nickname ?>" placeholder="Pseudo" required>
+                <input class="champPseudo" type="text" name="nickname" id="nickname" value="<?= $nickname ?>" placeholder="Pseudo" required>
             </div>
             <div class="col-sm-12 mt-4">
                 <input type="password" name="password" id="password" placeholder="Mot de passe" required>
             </div>
             <div class="col-sm-12 mt-4">
               <input type="hidden" name="userId" id="userId" value="" >
-                <button class="btn btn-outline-primary" type="submit">SE CONNECTER</button>
+                <button class="btn btn-dark" type="submit">SE CONNECTER</button>
             </div>
         </div>
     </form>
@@ -45,17 +45,16 @@
         return response.text();
       })
       .then(function(data) {
-        result = parseInt(data, 10);
-        if (result === 0) {
+        if (data === 'no user') {
           nickname.setCustomValidity("Utilisateur non enregistré");
         }
         // Verifier que le mot de passe correspond
-        else if (result === 1) {
+        else if (data === 'wrong password') {
           nickname.setCustomValidity('');
           password.setCustomValidity('Mot de passe éronné');
         }
-        else if (result > 1) {
-          userId.value = result;
+        else if (data > 0) {
+          userId.value = data;
           nickname.setCustomValidity('');
           password.setCustomValidity('');
         }

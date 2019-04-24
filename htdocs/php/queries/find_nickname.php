@@ -8,7 +8,7 @@ $req->execute(array($_GET['nickname']));
 $response = $req->fetch();
 
 if ($response['nickname'] == '') {
-    echo 0;
+    echo 'no user';
 }
 else {
     if (isset($_GET['password'])) {
@@ -16,7 +16,7 @@ else {
             echo $response['id'];
         }
         else {
-            echo 1;
+            echo 'wrong password';
         }
     }
 }
