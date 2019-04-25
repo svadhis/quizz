@@ -45,7 +45,7 @@ $questions = array_slice($response, 0, 6);
     $_SESSION['question'] = 0;
     $_SESSION['gameid'] = $response['id'];
     $_SESSION['answers'] = array();
-    $_SESSION['score'] = 0;
+    $_SESSION['score'] = array();
 
 
     header('Location: /index.php');

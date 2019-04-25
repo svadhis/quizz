@@ -47,7 +47,7 @@ $reponses = shuffle_assoc($reponses);
 
 $reponses = array_values($reponses);
 
-// theme, numero question, question, reponses
+// theme, numero question, question, réponses, bonne réponse
 ?>
 
     <?=$response['name']?>|

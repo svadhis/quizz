@@ -2,8 +2,13 @@
 
 $nickname = '';
 
+// Si user vient de finir une partie
+if (isset($_SESSION['endgame'])) {
+    include 'results.php';
+}
+
 // Si user en jeu
-if (isset($_SESSION['ingame'])) {
+else if (isset($_SESSION['ingame'])) {
     include 'game.php';
 }
 

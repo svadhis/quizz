@@ -1,13 +1,13 @@
-<div class="row connexion">
-  <div class="col-sm-12 text-center">
-    <ul class="nav nav-pills">
-      <li class="nav-item">
+<div class="row connexion mt-4">
+  <div class="col-12 offset-md-4 col-md-4">
+    <div class="row">
+      <div class="col-6 text-center">
         <a class="btn btn-outline-dark" href="index.php?view=connect">CONNEXION</a>
-      </li>
-      <li class="nav-item">
-        <a class="btn btn-outline-dark">INSCRIPTION</a>
-      </li>
-    </ul>
+      </div>
+      <div class="col-6 text-center">
+        <a class="btn btn-outline-dark"">INSCRIPTION</a>
+      </div>
+    </div>
   </div>
 </div>
 

@@ -8,7 +8,7 @@
         width = 0.1;
         if (n === 1) {
             timerOn = 0;
-            elem.className = 'bg-light';
+            elem.className = 'bg-secondary';
         }
         var id = setInterval(frame, s);
 
@@ -18,12 +18,13 @@
             } else {
                 width += 0.1;
                 elem.style.width = width + '%';
-                document.querySelector('span#timernumber').innerHTML = '<b>' + Math.ceil(((s * 10) - (width / 10 * s)) / 10) + '</b>';
+                document.querySelector('span#timernumber').innerHTML = '<b>' + Math.ceil(((s * 10) - (width /10 * s)) / 10) + '</b>';
             }
         }
     }
     // Check answer
     function checkAnswer(choice, good) {
+        let gameEnded = 0;
 
         function updateView() {
             return new Promise((resolve, reject) => {
@@ -49,30 +50,39 @@
                     }
                     answer.disabled = true;
                 }
-                resolve(result);
+                return resolve(result);
             })
         }
 
         updateView()
             .then((result) => {
-                fetch(`/php/queries/update_score.php?answerid=${choice}&result=${result}&timer=${width}`)
+                fetch(`/php/queries/update_score.php?result=${result}&timer=${width}`)
                     .then(function(response) {
                         return response.text();
                     })
                     .then(function(data) {
                         if (data > 5) {
-                            console.log('PARTIE TERMINEE');
+                            gameEnded = 1;
                         }
-                    })
+                        return data;
+                    });
             })
-            .then(() => {
-                document.querySelector('span#timertext').innerHTML = '<b>PROCHAINE QUESTION DANS';
+            .then((data) => {
                 timerBar(3, 1);
-
                 setTimeout(() => {
-                    location.reload();
-                }, 4000);
-            })
+                    console.log(gameEnded);
+                    if (gameEnded === 0) {
+                        document.querySelector('span#timertext').innerHTML = '<b>PROCHAINE QUESTION DANS';
+                        setTimeout(() => {
+                            location.reload();
+                        }, 3700);
+                    } else if (gameEnded === 1) {
+                        setTimeout(() => {
+                            window.location.replace("/php/end_game.php");
+                        }, 3700);
+                    }
+                }, 500);
+            });
 
     }
 
@@ -94,7 +104,7 @@
             </div>
         </div>
         <div class="container">
-            <div class="row">
+            <div class="row mt-2">
                 <div class="col-sm-12 text-center">
                     <h5>${question[0]}</h5>
                 </div>
@@ -107,25 +117,25 @@
             </div>
             <div class="row text-center">
                 <div class="col-6 col-sm-3">
-                    <button id="answer0" class="answer btn btn-outline-dark" type="button" onclick="checkAnswer(0, ${question[7]});">${question[3]}</button>
+                    <button id="answer0" class="answer btn btn-outline-dark border border-dark" type="button" onclick="checkAnswer(0, ${question[7]});">${question[3]}</button>
                 </div>
                 <div class="col-6 col-sm-3">
-                    <button id="answer1" class="answer btn btn-outline-dark" type="button" onclick="checkAnswer(1, ${question[7]});">${question[4]}</button>
+                    <button id="answer1" class="answer btn btn-outline-dark border border-warning" type="button" onclick="checkAnswer(1, ${question[7]});">${question[4]}</button>
                 </div>
                 <div class="col-6 col-sm-3">
-                    <button id="answer2" class="answer btn btn-outline-dark" type="button" onclick="checkAnswer(2, ${question[7]});">${question[5]}</button>
+                    <button id="answer2" class="answer btn btn-outline-dark border border-primary" type="button" onclick="checkAnswer(2, ${question[7]});">${question[5]}</button>
                 </div>
                 <div class="col-6 col-sm-3">
-                    <button id="answer3" class="answer btn btn-outline-dark" type="button" onclick="checkAnswer(3, ${question[7]});">${question[6]}</button>
+                    <button id="answer3" class="answer btn btn-outline-dark border border-danger" type="button" onclick="checkAnswer(3, ${question[7]});">${question[6]}</button>
                 </div>
             </div>
         </div>
         `;
 
-            timerBar(10, 0);
+            timerBar(15, 0);
 
             timerQuestion = setTimeout(() => {
                 checkAnswer(10, parseInt(question[7], 10));
-            }, 10000);
+            }, 15600);
         })
 </script>

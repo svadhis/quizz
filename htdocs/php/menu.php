@@ -1,3 +1,4 @@
+<h4 class="text-center">  Choisissez un thème </h4>
 <div class="accordion" id="accordionExample">
 
     <?php
@@ -17,27 +18,35 @@
         if ($score['max']) {
             $myBestScore = 'Meilleur score perso : ' . $score['max'];
         } else {
-            $myBestScore = "Aucune partie";
+            $myBestScore = "";
         }
 
         // Recuperer et afficher les top scores pour chaque theme
-        $req3 = $bdd->prepare('SELECT * FROM games 
+        $req3 = $bdd->prepare('SELECT nickname, MAX(score) AS score FROM games 
                                 INNER JOIN users ON games.userId = users.id
-                                WHERE games.themeId = ? ORDER BY games.score DESC LIMIT 10');
+                                WHERE games.themeId = ? 
+                                GROUP BY users.nickname
+                                LIMIT 10');
         $req3->execute(array($theme['id']));
 
+        $scores = $req3->fetchAll();
+
         $topScores = '';
-        
+
+        usort($scores, function ($item1, $item2) {
+            return $item2['score'] <=> $item1['score'];
+        });
+
         $i = 1;
-        while ($score = $req3->fetch()) {
+        foreach ($scores as $score) {
             $isTop = '';
             if ($score['nickname'] == $_COOKIE['nickname']) {
                 $isTop = 'text-danger font-weight-bold';
             }
-            $topScores = $topScores.'<tr class="'.$isTop.'">
-                            <th scope="row">'.$i.'</th>
-                            <td>'.$score['nickname'].'</td>
-                            <td>'.$score['score'].'</td>
+            $topScores = $topScores . '<tr class="' . $isTop . '">
+                            <th scope="row">' . $i . '</th>
+                            <td>' . $score['nickname'] . '</td>
+                            <td>' . $score['score'] . '</td>
                         </tr>';
             $i++;
         }
@@ -45,12 +54,12 @@
         ?>
 
         <div class="card">
-            <div class="card-header" id="heading<?= $theme['id'] ?>">
-                <h2 class="mb-0">
-                    <button class="btn btn-link text-decoration-none" type="button" data-toggle="collapse" data-target="#collapse<?= $theme['id'] ?>" aria-expanded="true" aria-controls="collapseOne">
-                        #<?= $theme['id'] ?> - <?= $theme['name'] ?>
+            <div class="card-header titre-theme" id="heading<?= $theme['id'] ?>">
+                <div class="mb-0">
+                    <button class="btn btn-link text-decoration-none text-body" type="button" data-toggle="collapse" data-target="#collapse<?= $theme['id'] ?>" aria-expanded="true" aria-controls="collapseOne">
+                        <h4><?= $theme['name'] ?></h4>
                     </button>
-                </h2>
+                </div>
             </div>
 
             <div id="collapse<?= $theme['id'] ?>" class="collapse" aria-labelledby="heading<?= $theme['id'] ?>" data-parent="#accordionExample">
@@ -59,14 +68,14 @@
                     <div class="col-12">
                         <h4><?= $myBestScore ?></h4>
                     </div>
-                    <div class="col-6">
+                    <div class="col-12 d-block p-2">
                         <form action="php/queries/start_game.php" method="post">
                             <input type="hidden" name="theme" value="<?= $theme['id'] ?>">
-                            <button class="d-inline-block btn btn-success" type="submit">Jouer</button>
+                            <button class="btn btn-primary btn-lg btn-block" type="submit">Jouer</button>
                         </form>
                     </div>
-                    <div class="col-6">
-                        <button class="d-inline-block btn btn-warning float-right" data-toggle="modal" data-target="#modal<?= $theme['id'] ?>">Meilleurs scores</button>
+                    <div class="col-12 d-block p-2">
+                        <button class="btn btn-danger btn-lg btn-block" data-toggle="modal" data-target="#modal<?= $theme['id'] ?>">Meilleurs scores</button>
                     </div>
 
                     <!-- Modal -->
@@ -74,7 +83,7 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="modal<?= $theme['id'] ?>Label"><?= $theme['name'] ?> - Top 10</h5>
+                                    <h5 class="modal-title p-3 mb-2 bg-warning text-dark rounded-pill" id="modal<?= $theme['id'] ?>Label"><?= $theme['name'] ?> - Top 10</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -82,12 +91,12 @@
                                 <div class="modal-body">
                                     <table class="table table-striped">
                                         <tbody>
-                                            <?=$topScores?>
+                                            <?= $topScores ?>
                                         </tbody>
                                     </table>
                                 </div>
- 
-                  
+
+
                             </div>
                         </div>
                     </div>

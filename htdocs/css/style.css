@@ -1,5 +1,5 @@
-.nav-item {
-	width: 50vw;
+body {
+	overflow: hidden;
 }
 
 .logo {
@@ -32,7 +32,7 @@
 	height: 30px;
 }
 
-.btn btn-outline-dark {
+.btn .btn-outline-dark {
 	margin: 10px 0;
 }
 
@@ -46,9 +46,27 @@
 }
 
 body {
-	background-color: #4e9eb9;
+	background-color: rgb(247, 247, 217);
 }
 
 .connexion {
 	margin-bottom: 125px;
+}
+
+.titre-theme {
+	background-color: rgb(223, 222, 222);
+}
+
+.footer {
+	text-align: center;
+	position: fixed;
+	bottom: 0px;
+	width: 100%;
+	display: inline-block;
+	vertical-align: top;
+	font-size: 13px;
+}
+
+.mt-6 {
+	margin-top: 70px;
 }
