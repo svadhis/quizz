@@ -1,10 +1,10 @@
-<div class="row connexion mt-4">
+<div class="row connexion">
   <div class="col-12 offset-md-4 col-md-4">
     <div class="row">
-      <div class="col-6 text-center">
+      <div class="col-6 text-center mt-3">
         <a class="btn btn-outline-dark">CONNEXION</a>
       </div>
-      <div class="col-6 text-center">
+      <div class="col-6 text-center mt-3">
         <a class="btn btn-outline-dark" href="index.php?view=register">INSCRIPTION</a>
       </div>
     </div>
@@ -22,7 +22,7 @@
       </div>
       <div class="col-12 mt-4">
         <input type="hidden" name="userId" id="userId" value="">
-        <button class="btn btn-dark" type="submit">SE CONNECTER</button>
+        <button class="btn btn-primary" type="submit">SE CONNECTER</button>
       </div>
     </div>
   </form>

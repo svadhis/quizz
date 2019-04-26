@@ -11,4 +11,4 @@ setcookie('nickname', $_POST['nickname'], time() + (86400 * 30), "/");
 
 $_SESSION['registered'] = 1;
 
-header('Location: /index.php');
+header('Location: /');

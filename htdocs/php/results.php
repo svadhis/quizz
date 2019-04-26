@@ -20,13 +20,13 @@ $themeId = $response['themeId'];
         <div class="col-12 offset-md-4 col-md-4 bg-white pt-2">
         <canvas id="myChart" width="400" height="400"></canvas>
         </div>
-        <div class="col-12 d-block p-2">
+        <div class="col-12 offset-md-1 col-md-5 d-block p-2">
             <form action="/php/queries/start_game.php" method="post">
                             <input type="hidden" name="theme" value="<?= $themeId ?>">
                             <button class="btn btn-primary btn-lg btn-block" type="submit">Rejouer</button>
                         </form>
         </div>
-        <div class="col-12 d-block p-2">
+        <div class="col-12 col-md-5 d-block p-2">
             <form action="/" method="post">
                             <button class="btn btn-danger btn-lg btn-block" type="submit">Retour au menu</button>
                         </form>

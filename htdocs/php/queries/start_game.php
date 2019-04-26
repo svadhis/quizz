@@ -48,4 +48,4 @@ $questions = array_slice($response, 0, 6);
     $_SESSION['score'] = array();
 
 
-    header('Location: /index.php');
+    header('Location: /');

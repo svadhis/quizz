@@ -33,7 +33,7 @@ unset ($_SESSION["answers"]);
 
 $_SESSION['endgame'] = 1;
 
-header('Location: /index.php');
+header('Location: /');
 
 /* 
 

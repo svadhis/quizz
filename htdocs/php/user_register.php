@@ -1,10 +1,10 @@
 <div class="row connexion mt-4">
   <div class="col-12 offset-md-4 col-md-4">
     <div class="row">
-      <div class="col-6 text-center">
+      <div class="col-6 text-center mt-3">
         <a class="btn btn-outline-dark" href="index.php?view=connect">CONNEXION</a>
       </div>
-      <div class="col-6 text-center">
+      <div class="col-6 text-center mt-3">
         <a class="btn btn-outline-dark"">INSCRIPTION</a>
       </div>
     </div>
@@ -24,7 +24,7 @@
         <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirmer le mot de passe" required>
       </div>
       <div class="col-sm-12 mt-4">
-        <button class="btn btn-dark" type="submit">S'ENREGISTRER</button>
+        <button class="btn btn-primary" type="submit">S'ENREGISTRER</button>
       </div>
     </div>
   </form>

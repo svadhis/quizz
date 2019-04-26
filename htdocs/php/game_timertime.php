@@ -2,17 +2,13 @@
     let timerQuestion;
     let timerOn = 1;
     let width = 0.1;
-    let showScore = 1000;
-    let setScore = 0;
-    let lastScore = 0;
-
     // Timer bar
     function timerBar(s, n) {
         var elem = document.getElementById('myBar');
         width = 0.1;
         if (n === 1) {
             timerOn = 0;
-            elem.className = 'bg-white';
+            elem.className = 'bg-secondary';
         }
         var id = setInterval(frame, s);
 
@@ -22,14 +18,7 @@
             } else {
                 width += 0.1;
                 elem.style.width = width + '%';
-                showScore = Math.round(10000 / width);
-                if (showScore > 1000) {
-                    showScore = 1000;
-                }
-                if (n === 0) {
-                document.querySelector('span#timernumber').innerHTML = '<b>' + showScore + ' POINTS A GAGNER</b>';
-                setScore = showScore;
-                }
+                document.querySelector('span#timernumber').innerHTML = '<b>' + Math.ceil(((s * 10) - (width /10 * s)) / 10) + '</b>';
             }
         }
     }
@@ -49,7 +38,6 @@
                         if (choice === good) {
                             answer.className = "answer btn btn-success";
                             result = 1;
-                            lastScore = setScore;
                         } else {
                             answer.className = "answer btn btn-danger";
                         }
@@ -82,9 +70,9 @@
             .then((data) => {
                 timerBar(3, 1);
                 setTimeout(() => {
+                    console.log(gameEnded);
                     if (gameEnded === 0) {
-                        document.querySelector('span#timertext').innerHTML = '<b>' + lastScore + ' POINTS !</b>';
-                        document.querySelector('span#timernumber').innerHTML = '';
+                        document.querySelector('span#timertext').innerHTML = '<b>PROCHAINE QUESTION DANS';
                         setTimeout(() => {
                             location.reload();
                         }, 3700);
@@ -108,23 +96,22 @@
             let question = data.split('|');
             document.querySelector('main').innerHTML = `
         <div id="myProgress" class="mb-4">
-            <div id="myBar" class="bg-warning">
-            </div>
             <div class="timer-container">
                 <span id="timertext"></span>
                 <span id="timernumber"></span>
             </div>
-            
+            <div id="myBar" class="bg-warning">
+            </div>
         </div>
         <div class="container">
             <div class="row mt-2">
-            <div class="col-sm-12 text-center">
-                    <h5><b>Question ${actualQuestion + 1}</b></h5>
+                <div class="col-sm-12 text-center">
+                    <h5>${question[0]}</h5>
                 </div>
-                <div id="BandeauTheme" class="col-sm-12 text-center text-white pt-2">
-                    <h3><b>${question[0]}</b></h3>
+                <div class="col-sm-12 text-center">
+                    <h4>Question ${actualQuestion + 1}</h4>
                 </div>
-                <div class="col-sm-12 text-question pt-2 mt-2">
+                <div class="col-sm-12">
                     <h5>${question[2]}</h5><br>
                 </div>
             </div>
